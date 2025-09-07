@@ -1,0 +1,15 @@
+---
+// src/components/ObraPreview.astro
+const { titulo, imagenSrc, slug } = Astro.props;
+---
+
+<div class="max-w-4xl mx-auto mb-12 group">
+  <a href={`/obras/${slug}`}>
+    <img
+      src={imagenSrc}
+      alt={`Ilustración llamada ${titulo}`}
+      class="rounded-lg shadow-xl group-hover:scale-105 transition-transform duration-500"
+    />
+    <h2 class="text-center text-2xl font-semibold mt-4">{titulo}</h2>
+  </a>
+</div>
