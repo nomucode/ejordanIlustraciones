@@ -1,17 +1,18 @@
 ---
 // src/pages/contacto.astro
 import Layout from "../layouts/Layout.astro";
+import { getPageInfo } from "../lib/wp";
+const { title, content } = await getPageInfo("contacto");
 ---
 
 <Layout>
   <div class="max-w-3xl mx-auto px-4 py-16 md:py-24 text-center">
-    <h1 class="text-4xl md:text-5xl font-bold text-zinc-900 mb-4">Hablemos</h1>
+    <h1 class="text-4xl md:text-5xl font-bold text-zinc-900 mb-4">{title}</h1>
 
-    <p class="text-lg text-zinc-600 max-w-xl mx-auto mb-12">
-      Si te gusta mi trabajo, tienes alguna propuesta de colaboración o
-      simplemente quieres saludar, no dudes en escribirme un correo. También
-      puedes seguir mi día a día como artista en Instagram.
-    </p>
+    <div
+      class="text-lg text-zinc-600 max-w-xl mx-auto mb-12"
+      set:html={content}
+    />
 
     <div class="space-y-8">
       <div>
