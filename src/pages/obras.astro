@@ -4,21 +4,29 @@ import Layout from "../layouts/Layout.astro";
 import ObraPreview from "../components/ObraPreview.astro";
 import { getAllObras } from "../lib/wp-graphql";
 
-const todasLasObras = await getAllObras();
+const obras = await getAllObras();
 ---
 
 <Layout title="Galería de Obras">
   <div class="p-4 md:p-8">
     <h1 class="text-5xl font-bold text-center mb-12">Obras</h1>
 
-    {
-      todasLasObras.map((obra) => (
-        <ObraPreview
-          titulo={obra.title}
-          imagenSrc={obra.featuredImage.node.sourceUrl}
-          slug={obra.slug}
-        />
-      ))
-    }
+    <div class="grid grid-cols-3 gap-8">
+      {
+        obras.map(
+          (obra: {
+            title: string;
+            featuredImage: { node: { sourceUrl: string } };
+            slug: string;
+          }) => (
+            <ObraPreview
+              titulo={obra.title}
+              imagenSrc={obra.featuredImage.node.sourceUrl}
+              slug={obra.slug}
+            />
+          )
+        )
+      }
+    </div>
   </div>
 </Layout>
