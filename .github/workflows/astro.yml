@@ -66,12 +66,22 @@ jobs:
       - name: Install dependencies
         run: ${{ steps.detect-package-manager.outputs.manager }} ${{ steps.detect-package-manager.outputs.command }}
         working-directory: ${{ env.BUILD_PATH }}
+
+      # --- MODIFICACIÓN AQUÍ ---
+      # Se añade el bloque 'env' para pasar las variables de entorno de GitHub al proceso de build de Astro.
+      # Asegúrate de que estas variables (ej: PUBLIC_WORDPRESS_API_URL) existen en:
+      # Settings > Secrets and variables > Actions > Repository variables
       - name: Build with Astro
+        env:
+          PUBLIC_WORDPRESS_API_URL: ${{ vars.PUBLIC_WORDPRESS_API_URL }}
+          PUBLIC_WP_DOMAIN: ${{ vars.PUBLIC_WP_DOMAIN }}
         run: |
           ${{ steps.detect-package-manager.outputs.runner }} astro build \
             --site "${{ steps.pages.outputs.origin }}" \
             --base "${{ steps.pages.outputs.base_path }}"
         working-directory: ${{ env.BUILD_PATH }}
+      # --- FIN DE LA MODIFICACIÓN ---
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
