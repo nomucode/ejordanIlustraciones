@@ -39,6 +39,7 @@ export async function getAllObras() {
       }
     }
   `);
+  console.log("Data", data);
   return data?.obras.nodes;
 }
 

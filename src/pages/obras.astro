@@ -5,6 +5,7 @@ import ObraPreview from "../components/ObraPreview.astro";
 import { getAllObras } from "../lib/wp-graphql";
 
 const todasLasObras = await getAllObras();
+console.log(todasLasObras);
 ---
 
 <Layout title="Galería de Obras">
