@@ -92,7 +92,7 @@ export async function getSobreMiPage() {
   }
 }
   `);
-  return data?.page;
+  return data?.page.datosSobreMi;
 }
 
 export async function getHomePage() {
