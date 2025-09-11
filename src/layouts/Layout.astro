@@ -1,25 +1,27 @@
 ---
 // src/layouts/Layout.astro
 import "../styles/global.css";
+
+const { title } = Astro.props;
 ---
 
 <html lang="es">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
-    <title>Beatriz Estebanez Jordan - Portfolio</title>
+    <title>Beatriz Estebanez Jordan - {title}</title>
   </head>
-  <body class="bg-white text-zinc-800 font-sans">
+  <body class=" bg-gray-50 text-zinc-800 font-sans">
     <header class="fixed top-0 left-0 w-full z-10">
       <nav
-        class="max-w-5xl mx-auto p-4 flex justify-center gap-6 bg-white/80 backdrop-blur-md rounded-b-lg"
+        class="max-w-5xl mx-auto p-4 flex justify-center gap-6 bg-grey-50 backdrop-blur-md rounded-b-lg"
       >
-        <a href="/" class="hover:text-pink-600 transition-colors">Inicio</a>
-        <a href="/obras" class="hover:text-pink-600 transition-colors">Obras</a>
-        <a href="/sobre-mi" class="hover:text-pink-600 transition-colors"
+        <a href="/" class="hover:text-secondary transition-colors">Inicio</a>
+        <a href="/obras" class="hover:text-secondary transition-colors">Obras</a>
+        <a href="/sobre-mi" class="hover:text-secondary transition-colors"
           >Sobre Mí</a
         >
-        <a href="/contacto" class="hover:text-pink-600 transition-colors"
+        <a href="/contacto" class="hover:text-secondary transition-colors"
           >Contacto</a
         >
       </nav>
@@ -27,7 +29,7 @@ import "../styles/global.css";
 
     <main class="pt-24"><slot /></main>
 
-    <footer class="text-center p-8 text-zinc-500">
+    <footer class="text-center p-8 text-zinc-500 bg-grey-50">
       <p>&copy; 2025 Beatriz Estebanez Jordan</p>
     </footer>
   </body>

@@ -92,5 +92,5 @@ export async function getSobreMiPage() {
   }
 }
   `);
-  return data?.page;
+  return data?.page.datosSobreMi;
 }
