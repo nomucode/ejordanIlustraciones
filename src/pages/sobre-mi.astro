@@ -11,7 +11,6 @@ const {
   valores,
   cta,
 } = await getSobreMiPage();
-
 ---
 
 <Layout title={titulo}>
@@ -29,7 +28,9 @@ const {
       </p>
     </header>
 
-    <div class="grid md:grid-cols-2 gap-16 md:gap-24 items-center w-3/4 mx-auto pt-10">
+    <div
+      class="grid md:grid-cols-2 gap-16 md:gap-24 items-center w-3/4 mx-auto pt-10"
+    >
       <section>
         <h2 class="text-4xl font-semibold mb-4 text-primary">Trayectoria</h2>
         <div set:html={trayectoria} class="text-zinc-700 leading-relaxed" />
