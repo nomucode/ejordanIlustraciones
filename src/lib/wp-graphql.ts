@@ -68,3 +68,29 @@ export async function getObraBySlug(slug: string) {
   );
   return data?.obra;
 }
+
+export async function getSobreMiPage() {
+  const data = await fetchAPI(`
+    query GetSobreMiPage {
+  page(id: "sobre-mi", idType: URI) {
+    title
+    slug
+    datosSobreMi {
+      textoIntroductorio
+      trayectoria
+      visionArtistica
+      valores
+      titulo
+      cta {
+        texto
+        enlace {
+          url
+          tituloDelEnlace
+        }
+      }
+    }
+  }
+}
+  `);
+  return data?.page;
+}
