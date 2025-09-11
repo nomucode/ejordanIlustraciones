@@ -94,3 +94,76 @@ export async function getSobreMiPage() {
   `);
   return data?.page;
 }
+
+export async function getHomePage() {
+  const data = await fetchAPI(`
+   {
+  page(id: "triz-jordan", idType: URI) {
+    title
+    slug
+    contenidoDeLaHome {
+      hero {
+        titulo
+        texto
+        subtitulo
+        callToAction {
+          enlace
+          texto
+        }
+      }
+      manifiesto {
+        texto
+        titulo
+      }
+      queHago {
+        titulo
+        introduccion
+        bloque1 {
+          texto
+          titulo
+        }
+        bloque2 {
+          texto
+          titulo
+        }
+        bloque3 {
+          texto
+          titulo
+        }
+      }
+      cierre {
+        titulo
+        texto
+        callToAction {
+          texto
+          enlace {
+            url
+            title
+            target
+          }
+        }
+      }
+      galeria {
+        titulo
+        texto
+        callToAction {
+          texto
+          enlace {
+            url
+            title
+            target
+          }
+        }
+      }
+      imagenDePortada {
+        node {
+          altText
+          sourceUrl
+        }
+      }
+    }
+  }
+}
+  `);
+  return data?.page?.contenidoDeLaHome;
+}
