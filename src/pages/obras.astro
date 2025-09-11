@@ -8,10 +8,18 @@ const obras = await getAllObras();
 ---
 
 <Layout title="Galería de Obras">
-  <div class="p-4 md:p-8">
-    <h1 class="text-5xl font-bold text-center mb-12">Obras</h1>
+  <article
+    class="prose max-w-none prose-lg md:prose-xl mx-auto px-4 py-10 md:py-10"
+  >
+    <header class="text-center mb-12" data-animate="fade">
+      <h1
+        class="text-5xl md:text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-secondary to-accent"
+      >
+        Obras
+      </h1>
+    </header>
 
-    <div class="grid grid-cols-3 gap-8">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
       {
         obras.map(
           (obra: {
@@ -19,14 +27,70 @@ const obras = await getAllObras();
             featuredImage: { node: { sourceUrl: string } };
             slug: string;
           }) => (
-            <ObraPreview
-              titulo={obra.title}
-              imagenSrc={obra.featuredImage.node.sourceUrl}
-              slug={obra.slug}
-            />
+            <div data-animate="zoom">
+              <ObraPreview
+                titulo={obra.title}
+                imagenSrc={obra.featuredImage.node.sourceUrl}
+                slug={obra.slug}
+              />
+            </div>
           )
         )
       }
     </div>
-  </div>
+  </article>
+
+  <script>
+    const animations = {
+      fade: ["opacity-0", "translate-y-10"],
+      up: ["opacity-0", "translate-y-10"],
+      left: ["opacity-0", "-translate-x-10"],
+      right: ["opacity-0", "translate-x-10"],
+      zoom: ["opacity-0", "scale-90"],
+    };
+
+    function initScrollAnimations() {
+      const elements = document.querySelectorAll("[data-animate]");
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add(
+                "opacity-100",
+                "translate-y-0",
+                "translate-x-0",
+                "scale-100"
+              );
+              entry.target.classList.remove(
+                "opacity-0",
+                "translate-y-10",
+                "-translate-x-10",
+                "translate-x-10",
+                "scale-90"
+              );
+              observer.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.1 }
+      );
+
+      elements.forEach((el) => {
+        const type = el.getAttribute("data-animate");
+        const classes = animations[type] || animations.fade;
+
+        el.classList.add(
+          ...classes,
+          "transition-all",
+          "duration-1000",
+          "ease-out"
+        );
+        observer.observe(el);
+      });
+    }
+
+    if (typeof window !== "undefined") {
+      initScrollAnimations();
+    }
+  </script>
 </Layout>
