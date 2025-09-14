@@ -8,15 +8,16 @@ const { title } = Astro.props;
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
-    <title>Beatriz Estebanez Jordan - {title}</title>
+    <title>Triz Jordan - {title}</title>
   </head>
-  <body class=" bg-gray-50 text-zinc-800 font-sans">
+  <body class="bg-gray-50 text-zinc-800 font-sans">
     <header class="sticky top-2 w-full z-10 flex justify-center">
       <nav
         class="max-w-5xl p-4 flex justify-center gap-6 bg-grey-50 backdrop-blur-md rounded-full"
       >
         <a href="/" class="hover:text-secondary transition-colors">Inicio</a>
-        <a href="/obras" class="hover:text-secondary transition-colors">Obras</a>
+        <a href="/obras" class="hover:text-secondary transition-colors">Obras</a
+        >
         <a href="/sobre-mi" class="hover:text-secondary transition-colors"
           >Sobre Mí</a
         >
@@ -29,7 +30,7 @@ const { title } = Astro.props;
     <main class="pt-24"><slot /></main>
 
     <footer class="text-center p-8 text-zinc-500 bg-grey-50">
-      <p>&copy; 2025 Beatriz Estebanez Jordan</p>
+      <p>&copy; 2025 Triz Jordan</p>
     </footer>
   </body>
 </html>
