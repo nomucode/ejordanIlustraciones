@@ -1,0 +1,21 @@
+---
+// src/components/sections/Manifiesto.astro
+const { titulo, texto } = Astro.props;
+---
+
+<section class="py-16 md:py-24 bg-gray-100">
+  <div class="max-w-4xl mx-auto px-4 text-center">
+    <h2
+      class="text-3xl md:text-4xl font-bold text-primary mb-6"
+      data-animate="fade-up"
+    >
+      {titulo}
+    </h2>
+    <div
+      class="prose prose-xl mx-auto text-zinc-700 leading-relaxed"
+      set:html={texto}
+      data-animate="fade-up"
+      data-animate-delay="200"
+    />
+  </div>
+</section>

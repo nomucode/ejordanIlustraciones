@@ -1,0 +1,33 @@
+---
+// src/components/sections/Galeria.astro
+import CtaButton from "../CtaButton.astro"; // Reutilizamos un botón
+const { titulo, texto, cta } = Astro.props;
+---
+
+<section class="py-16 md:py-24 bg-accent/10">
+  <div class="max-w-4xl mx-auto px-4 text-center">
+    <h2
+      class="text-3xl md:text-4xl font-bold text-primary mb-4"
+      data-animate="fade-up"
+    >
+      {titulo}
+    </h2>
+    <p
+      class="text-lg text-zinc-600 mb-8"
+      data-animate="fade-up"
+      data-animate-delay="200"
+    >
+      {texto}
+    </p>
+
+    <div data-animate="zoom-in" data-animate-delay="400">
+      <CtaButton
+        href={cta.enlace.url}
+        target={cta.enlace.target}
+        title={cta.enlace.title}
+      >
+        {cta.texto}
+      </CtaButton>
+    </div>
+  </div>
+</section>

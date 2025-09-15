@@ -1,0 +1,15 @@
+---
+// src/components/CtaButton.astro
+const { href, target, title } = Astro.props;
+const rel = target === "_blank" ? "noopener noreferrer" : undefined;
+---
+
+<a
+  href={href}
+  target={target}
+  title={title}
+  rel={rel}
+  class="inline-block px-8 py-4 bg-primary text-white font-bold rounded-full shadow-lg hover:bg-transparent hover:text-primary border-2 border-primary transition-colors duration-300"
+>
+  <slot />
+</a>

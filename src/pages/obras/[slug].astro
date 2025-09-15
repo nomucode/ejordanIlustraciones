@@ -2,6 +2,7 @@
 // src/pages/obras/[slug].astro
 import Layout from "../../layouts/Layout.astro";
 import { getAllObras, getObraBySlug } from "../../lib/wp-graphql";
+import Image from "astro/components/Image.astro";
 
 // PASO 1: getStaticPaths obtiene la LISTA de todas las obras para decirle a Astro qué páginas crear.
 export async function getStaticPaths() {

@@ -1,0 +1,54 @@
+---
+// src/components/sections/Hero.astro
+import { Image } from "astro:assets";
+
+const { titulo, subtitulo, textoIntro, cta, imagen } = Astro.props;
+---
+
+<section
+  class="min-h-screen flex items-center justify-center p-4 md:p-8 relative"
+>
+  <div
+    class="flex flex-col md:flex-row items-center justify-center gap-12 max-w-6xl w-full -mt-24"
+  >
+    <div class="md:w-1/2 text-center md:text-left" data-animate="fade-up">
+      <h1
+        class="text-4xl md:text-6xl font-bold bg-gradient-to-r from-secondary to-accent text-transparent bg-clip-text mb-4"
+      >
+        {titulo}
+      </h1>
+      <div class="text-xl text-zinc-700 mt-4 opacity-80" set:html={subtitulo} />
+      <p class="mt-6 text-lg text-zinc-600 leading-relaxed">{textoIntro}</p>
+
+      {
+        cta && cta.enlace && (
+          <a
+            href={cta.enlace}
+            class="inline-block mt-8 px-8 py-3 bg-primary text-white font-bold rounded-full shadow-lg hover:bg-transparent hover:text-primary border-2 border-primary transition-colors duration-300"
+          >
+            {cta.texto}
+          </a>
+        )
+      }
+    </div>
+
+    <div
+      class="md:w-1/2 flex justify-center items-center"
+      data-animate="zoom-in"
+    >
+      <div
+        class="relative w-80 h-80 md:w-96 md:h-96 rounded-full overflow-hidden shadow-2xl"
+      >
+        <Image
+          src={imagen.node.sourceUrl}
+          alt={imagen.node.altText}
+          width={500}
+          height={500}
+          format="webp"
+          quality={80}
+          class="w-full h-full object-cover"
+        />
+      </div>
+    </div>
+  </div>
+</section>
