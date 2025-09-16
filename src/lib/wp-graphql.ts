@@ -57,7 +57,11 @@ export async function getObraBySlug(slug: string) {
         }
         datosDeLaObra {
           descripcion
-          ano
+          ano,
+          dimensiones,
+          tecnica,
+          textoNarrativo,
+          
         }
       }
     }

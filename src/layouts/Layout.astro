@@ -9,6 +9,12 @@ const { title } = Astro.props;
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
     <meta name="description" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@400;700&family=Lora:ital,wght@0,400..700;1,400..700&family=Merriweather:wght@400;700&family=Neuton:wght@400;700&family=Nunito:wght@400;700&family=Raleway:wght@400;700&family=Roboto:wght@400;700&family=Varela+Round&display=swap"
+      rel="stylesheet"
+    />
     <title>Triz Jordan - {title}</title>
   </head>
   <body class="bg-gray-50 text-zinc-800 font-sans">
@@ -28,7 +34,7 @@ const { title } = Astro.props;
       </nav>
     </header>
 
-    <main class="pt-24"><slot /></main>
+    <main class="pt-2"><slot /></main>
 
     <footer class="text-center p-8 text-zinc-500 bg-grey-50">
       <p>&copy; 2025 Triz Jordan</p>

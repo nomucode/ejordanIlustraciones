@@ -8,44 +8,73 @@ import Image from "astro/components/Image.astro";
 export async function getStaticPaths() {
   const todasLasObras = await getAllObras();
 
-  // Debe devolver un array de objetos, cada uno con una clave "params".
   return todasLasObras.map((obra) => ({
     params: { slug: obra.slug },
   }));
 }
 
-// PASO 2: Este código se ejecuta para cada página individual que se está generando.
-const { slug } = Astro.params; // Obtenemos el slug de la URL (ej: "la-pedorrina-salvaje")
-const obra = await getObraBySlug(slug!); // Usamos ese slug para obtener los datos de ESTA obra
+const { slug } = Astro.params;
+const obra = await getObraBySlug(slug!);
 ---
 
 <Layout title={`${obra.title} | Beatriz Estebanez`}>
   <div class="max-w-6xl mx-auto px-4 py-8 md:py-16">
-    <div class="grid grid-cols-1 md:grid-cols-5 md:gap-12">
+    <div class="flex grid-cols-1 md:grid-cols-5 md:gap-12">
       <div class="md-col-span-3 mb-8 md:mb-0">
-        <img
+        <Image
+          class="rounded-lg shadow-2xl min-h-100 min-w-100"
           src={obra.featuredImage?.node.sourceUrl}
           alt={obra.featuredImage?.node.altText}
-          class="rounded-lg shadow-2xl w-full h-auto object-cover"
+          width={100}
+          height={100}
         />
       </div>
       <div class="md-col-span-2">
-        <h1 class="text-4xl md:text-5xl font-bold text-zinc-900 mb-4">
+        <h1
+          class="text-4xl md:text-5xl font-bold text-gray-600 font-heading mb-4"
+        >
           {obra.title}
         </h1>
 
-        {}
-        <p class="text-lg text-zinc-700 leading-relaxed mb-6">
+        <blockquote
+          class="border-l-4 border-gray-400 pl-4 italic text-gray-700 text-3xl mb-6"
+        >
+          <p class="mr-60">
+            ‘{obra.datosDeLaObra?.textoNarrativo}’
+          </p>
+        </blockquote>
+
+        <h2 class="text-2xl uppercase tracking-widest text-zinc-500 mb-2">
+          Sobre la Obra
+        </h2>
+        <p
+          class="font-sans text-md text-gray-500 leading-relaxed mb-6 text-pretty text-justify"
+        >
           {obra.datosDeLaObra?.descripcion}
         </p>
 
-        <div>
-          <h2 class="text-sm uppercase tracking-widest text-zinc-500 mb-2">
-            Año
-          </h2>
-          <p class="text-xl text-zinc-800">{obra.datosDeLaObra?.ano}</p>
+        <div class="flex gap-x-30 justify-start">
+          <div class="pr-1">
+            <h3 class="text-sm uppercase tracking-widest text-zinc-500 mb-2">
+              Técnica
+            </h3>
+            <p class="text-xl text-zinc-800">{obra.datosDeLaObra?.tecnica}</p>
+          </div>
+          <div class="pr-1">
+            <h3 class="text-sm uppercase tracking-widest text-zinc-500 mb-2">
+              Dimensiones
+            </h3>
+            <p class="text-xl text-zinc-800">
+              {obra.datosDeLaObra?.dimensiones}
+            </p>
+          </div>
+          <div class="pr-1">
+            <h3 class="text-sm uppercase tracking-widest text-zinc-500 mb-2">
+              Año
+            </h3>
+            <p class="text-xl text-zinc-800">{obra.datosDeLaObra?.ano}</p>
+          </div>
         </div>
-
         <div class="mt-8">
           <a href="/obras" class="text-pink-600 hover:underline">
             &larr; Volver a la galería
