@@ -12,76 +12,88 @@ const { title } = Astro.props;
     <meta name="description" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
     <link
-      href="https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@400;700&family=Lora:ital,wght@0,400..700;1,400..700&family=Merriweather:wght@400;700&family=Neuton:wght@400;700&family=Nunito:wght@400;700&family=Raleway:wght@400;700&family=Roboto:wght@400;700&family=Varela+Round&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&family=Roboto:wght@400;700&display=swap"
       rel="stylesheet"
     />
 
     <title>Triz Jordan - {title}</title>
-    <script type="module" is:inline>
-      import "/src/js/parallax.js";
-      import "/src/js/animations.js";
-    </script>
+
+    <script type="module" src="/src/js/parallax.js"></script>
+    <script type="module" src="/src/js/animations.js"></script>
   </head>
 
   <body class="bg-gray-50 text-zinc-800 font-sans">
-    <header class="sticky top-0 w-full z-10 flex justify-center">
-      <nav
-        class="w-full p-4 flex justify-between md:justify-center items-center gap-x-4 md:gap-x-10 bg-grey-50 backdrop-blur-md sm:bg-white"
-      >
-        <!-- Contenedor del menú para pantallas grandes -->
-        <div class="hidden md:flex items-center gap-x-4 md:gap-x-10">
-          <a
-            href="/"
-            class="text-md uppercase tracking-widest text-zinc-500 hover:text-secondary transition-colors"
-            >Inicio</a
-          >
-          <a
-            href="/obras"
-            class="text-md uppercase tracking-widest text-zinc-500 hover:text-secondary transition-colors"
-            >Obras</a
-          >
-        </div>
-        <a href="/" class="md:order-2">
-          <Image alt={"Logo"} src={"/Logo.png"} width={100} height={100} />
-        </a>
+    <header class="sticky top-0 w-full z-20 flex justify-center">
+      <nav class="w-full flex justify-center p-4 backdrop-blur-lg bg-white/80">
+        <div class="w-full max-w-7xl flex items-center justify-between">
+          <a href="/" class="md:hidden">
+            <Image alt={"Logo"} src={"/Logo.png"} width={40} height={40} />
+          </a>
 
-        <div class="hidden md:flex items-center gap-x-4 md:gap-x-10">
-          <a
-            href="/sobre-mi"
-            class="text-md uppercase tracking-widest text-zinc-500 hover:text-secondary transition-colors"
-            >Sobre Mí</a
+          <div
+            class="hidden md:flex flex-1 items-center justify-center gap-x-10"
           >
-          <a
-            href="/contacto"
-            class="text-md uppercase tracking-widest text-zinc-500 hover:text-secondary transition-colors"
-            >Contacto</a
-          >
-        </div>
-
-        <!-- Botón de hamburguesa para móvil -->
-        <div class="md:hidden">
-          <button id="menu-btn" class="text-zinc-500 focus:outline-none">
-            <svg
-              class="w-6 h-6"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-              xmlns="http://www.w3.org/2000/svg"
+            <a
+              href="/"
+              class="text-md uppercase tracking-widest text-zinc-500 hover:text-secondary transition-colors"
+              >Inicio</a
             >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M4 6h16M4 12h16m-7 6h7"></path>
-            </svg>
-          </button>
+            <a
+              href="/obras"
+              class="text-md uppercase tracking-widest text-zinc-500 hover:text-secondary transition-colors"
+              >Obras</a
+            >
+            <a href="/" class="self-center">
+              <Image alt={"Logo"} src={"/Logo.png"} width={100} height={100} />
+            </a>
+            <a
+              href="/sobre-mi"
+              class="text-md uppercase tracking-widest text-zinc-500 hover:text-secondary transition-colors"
+              >Sobre Mí</a
+            >
+            <a
+              href="/contacto"
+              class="text-md uppercase tracking-widest text-zinc-500 hover:text-secondary transition-colors"
+              >Contacto</a
+            >
+          </div>
+
+          <div class="md:hidden">
+            <button
+              id="menu-btn"
+              data-menu-button
+              class="text-zinc-500 focus:outline-none focus:ring-2 focus:ring-secondary rounded"
+              aria-controls="mobile-menu"
+              aria-expanded="false"
+            >
+              <span class="sr-only">Abrir menú principal</span>
+              <svg
+                class="w-6 h-6"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M4 6h16M4 12h16m-7 6h7"></path>
+              </svg>
+            </button>
+          </div>
         </div>
       </nav>
-      <!-- Menú móvil -->
-      <div id="menu" class="hidden md:hidden">
+
+      <div
+        id="mobile-menu"
+        data-mobile-menu
+        class="absolute top-20 w-full hidden"
+      >
         <div
-          class="absolute top-0 flex flex-col items-center self-end py-8 mt-10 space-y-6 bg-white sm:w-auto sm:self-center left-6 right-6 drop-shadow-md"
+          class="flex flex-col items-center py-8 space-y-6 bg-white drop-shadow-md mx-4 rounded-xl"
         >
           <a href="/" class="text-zinc-500 hover:text-secondary">Inicio</a>
           <a href="/obras" class="text-zinc-500 hover:text-secondary">Obras</a>
@@ -103,14 +115,19 @@ const { title } = Astro.props;
       <p>&copy; 2025 Triz Jordan</p>
     </footer>
 
-    <script>
-      const btn = document.getElementById("menu-btn");
-      const menu = document.getElementById("menu");
+    <script is:inline>
+      // 💡 REFACTOR DE SCRIPT:
+      // Usamos selectores de atributos 'data-*' para desacoplar JS del CSS.
+      // Añadimos gestión de 'aria-expanded' para mejorar la accesibilidad.
+      const menuButton = document.querySelector("[data-menu-button]");
+      const mobileMenu = document.querySelector("[data-mobile-menu]");
 
-      if (btn && menu) {
-        btn.addEventListener("click", () => {
-          console.log("Toggle");
-          menu.classList.toggle("hidden");
+      if (menuButton && mobileMenu) {
+        menuButton.addEventListener("click", () => {
+          mobileMenu.classList.toggle("hidden");
+          const isExpanded =
+            menuButton.getAttribute("aria-expanded") === "true";
+          menuButton.setAttribute("aria-expanded", !isExpanded);
         });
       }
     </script>

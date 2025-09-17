@@ -7,24 +7,23 @@ const { titulo, subtitulo, textoIntro, cta, imagenDePortada, featuredImage } =
 ---
 
 <section
-  class="min-h-screen flex items-center justify-center p-4 md:p-8 relative overflow-hidden"
+  class="min-h-200 flex justify-center m-auto px-4 md:px-8 relative overflow-hidden"
 >
   {
     featuredImage && (
-      <div class="absolute inset-0 z-0 opacity-20 mask-leaf" data-parallax>
-               {" "}
+      <div class="absolute inset-0 z-0 opacity-20 mask-leaf overflow-hidden">
         <img
           src={featuredImage.node.sourceUrl}
           alt={featuredImage.node.altText}
-          class="w-full h-full object-cover"
+          class="w-full h-full object-cover scale-125"
+          data-parallax
         />
-             {" "}
       </div>
     )
   }
 
   <div
-    class="relative z-10 flex flex-col md:flex-row items-center justify-center gap-x-12 max-w-6xl w-full"
+    class="relative z-10 flex flex-col md:flex-row justify-center gap-x-12 max-w-6xl w-full md:mt-50"
   >
     <div
       class="md:w-1/2 text-center md:text-left animate-on-scroll"
@@ -52,7 +51,7 @@ const { titulo, subtitulo, textoIntro, cta, imagenDePortada, featuredImage } =
     </div>
 
     <div
-      class="md:w-1/2 flex justify-center items-center mt-12 md:mt-0 animate-on-scroll"
+      class="md:w-1/2 flex justify-center mt-12 md:mt-0 animate-on-scroll"
       data-delay="200"
     >
       <div
