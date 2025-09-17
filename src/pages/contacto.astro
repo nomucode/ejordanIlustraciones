@@ -10,10 +10,19 @@ const description =
 ---
 
 <Layout title={title} description={description}>
-  <div class="max-w-3xl mx-auto px-4 py-16 md:py-24">
-    <header class="text-center mb-12" data-animate="fade-up">
-      <h1 class="text-4xl md:text-5xl font-bold text-zinc-900 mb-4">{title}</h1>
-      <div class="prose prose-xl mx-auto text-zinc-600" set:html={content} />
+  <article
+    class="prose max-w-none prose-lg md:prose-xl mx-auto px-4 py-10 md:py-10"
+  >
+    <header class="text-center mb-12" data-animate="fade">
+      <h2
+        class="text-5xl md:text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-secondary to-accent"
+      >
+        {title}
+      </h2>
+      <p
+        class="mt-4 text-xl text-zinc-600 max-w-3xl mx-auto text-center"
+        set:html={content}
+      />
     </header>
 
     <main data-animate="fade-up" data-animate-delay="200">
@@ -27,5 +36,5 @@ const description =
     >
       <div class="space-y-4"></div>
     </footer>
-  </div>
+  </article>
 </Layout>
