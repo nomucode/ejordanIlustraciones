@@ -2,7 +2,7 @@
 // src/pages/obras/[slug].astro
 import Layout from "../../layouts/Layout.astro";
 import { getAllObras, getObraBySlug } from "../../lib/wp-graphql";
-import Image from "astro/components/Image.astro";
+import { Image } from "astro:assets"; // ✅ Usamos Image de astro:assets para mejor optimización
 
 // PASO 1: getStaticPaths obtiene la LISTA de todas las obras para decirle a Astro qué páginas crear.
 export async function getStaticPaths() {
@@ -17,29 +17,39 @@ const { slug } = Astro.params;
 const obra = await getObraBySlug(slug!);
 ---
 
-<Layout title={`${obra.title} | Beatriz Estebanez`}>
+<Layout title={`${obra.title} | Triz Jordan`}>
   <div class="max-w-6xl mx-auto px-4 py-8 md:py-16">
-    <div class="flex grid-cols-1 md:grid-cols-5 md:gap-12">
-      <div class="md-col-span-3 mb-8 md:mb-0">
+    {
+      /* ✅ CORRECCIÓN 1: Se usa Grid correctamente. 1 columna en móvil, 5 en desktop. */
+    }
+    <div class="grid grid-cols-1 md:grid-cols-5 md:gap-12">
+      {/* ✅ CORRECCIÓN 2: Sintaxis correcta 'md:col-span-3' */}
+      <div class="md:col-span-3 mb-8 md:mb-0">
+        {
+          /* ✅ CORRECCIÓN 3: <Image> optimizada. width/height para la fuente, clases para el display. */
+        }
         <Image
-          class="rounded-lg shadow-2xl min-h-100 min-w-100"
+          class="w-full h-auto rounded-lg shadow-2xl"
           src={obra.featuredImage?.node.sourceUrl}
           alt={obra.featuredImage?.node.altText}
-          width={100}
-          height={100}
+          width={800}
+          height={1200}
+          format="webp"
         />
       </div>
-      <div class="md-col-span-2">
+
+      <div class="md:col-span-2">
         <h1
-          class="text-4xl md:text-6xl font-bold font-heading mb-4 bg-gradient-to-r from-primary to-accent text-transparent bg-clip-text"
+          class="text-4xl md:text-5xl font-bold font-heading mb-4 bg-gradient-to-r from-primary to-accent text-transparent bg-clip-text"
         >
           {obra.title}
         </h1>
 
-        <blockquote
-          class="border-l-4 border-gray-400 pl-4 text-gray-700 text-3xl my-10"
-        >
-          <p class="mr-60 text-gray-400 font font-semibold italic">
+        {/* ✅ CORRECCIÓN 4: Margen responsive en la cita. */}
+        <blockquote class="border-l-4 border-gray-300 pl-4 my-10">
+          <p
+            class="text-xl md:text-2xl text-gray-500 font-semibold italic md:mr-20"
+          >
             {obra.datosDeLaObra?.textonarrativo}
           </p>
         </blockquote>
@@ -48,35 +58,40 @@ const obra = await getObraBySlug(slug!);
           Sobre la Obra
         </h2>
         <p
-          class="font-sans text-md text-gray-500 leading-relaxed mb-6 text-pretty text-justify"
+          class="font-sans text-md text-gray-600 leading-relaxed mb-6 text-pretty"
         >
           {obra.datosDeLaObra?.descripcion}
         </p>
 
-        <div class="flex gap-x-30 justify-start">
-          <div class="pr-1">
-            <h3 class="text-sm uppercase tracking-widest text-zinc-500 mb-2">
+        {
+          /* ✅ CORRECCIÓN 5: Layout responsive para los detalles (columna en móvil, fila en desktop). */
+        }
+        <div class="flex flex-col md:flex-row gap-8 mt-8">
+          <div>
+            <h3 class="text-sm uppercase tracking-widest text-zinc-500 mb-1">
               Técnica
             </h3>
             <p class="text-xl text-zinc-800">{obra.datosDeLaObra?.tecnica}</p>
           </div>
-          <div class="pr-1">
-            <h3 class="text-sm uppercase tracking-widest text-zinc-500 mb-2">
+          <div>
+            <h3 class="text-sm uppercase tracking-widest text-zinc-500 mb-1">
               Dimensiones
             </h3>
             <p class="text-xl text-zinc-800">
               {obra.datosDeLaObra?.dimensiones}
             </p>
           </div>
-          <div class="pr-1">
-            <h2 class="text-sm uppercase tracking-widest text-zinc-500 mb-2">
+          <div>
+            <h3 class="text-sm uppercase tracking-widest text-zinc-500 mb-1">
               Año
-            </h2>
+            </h3>
             <p class="text-xl text-zinc-800">{obra.datosDeLaObra?.ano}</p>
           </div>
         </div>
-        <div class="mt-8">
-          <a href="/obras" class="text-pink-600 hover:underline">
+
+        <div class="mt-12">
+          {/* ✅ CORRECCIÓN 6: Estilo del enlace consistente con la web. */}
+          <a href="/obras" class="text-primary font-semibold hover:underline">
             &larr; Volver a la galería
           </a>
         </div>
