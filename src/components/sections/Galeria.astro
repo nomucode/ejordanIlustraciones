@@ -2,11 +2,17 @@
 import CtaButton from "../CtaButton.astro";
 
 // src/components/sections/Galeria.astro
-const { titulo, texto, cta } = Astro.props;
+const { titulo, texto, cta, backgroundImage } = Astro.props;
+const imageUrl = backgroundImage?.node?.sourceUrl;
 ---
 
-<section class="py-16 md:py-24 bg-gradient-to-br from-gray-50 to-accent/20">
-  <div class="max-w-4xl mx-auto px-4 text-center">
+{/* ✅ CAMBIOS APLICADOS AQUÍ */}
+<section
+  class="relative py-16 md:py-24 bg-cover bg-center before:absolute before:inset-0 before:bg-white before:opacity-75"
+  style={imageUrl ? { backgroundImage: `url(${imageUrl})` } : {}}
+>
+  {/* Y AQUÍ 👇 */}
+  <div class="relative z-10 max-w-4xl mx-auto px-4 text-center">
     <div class="animate-on-scroll" data-delay="200">
       <h2
         class="text-3xl md:text-4xl font-bold font-subheading text-primary mb-4"
