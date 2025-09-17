@@ -7,7 +7,6 @@ const { titulo, subtitulo, textoIntro, cta, imagenDePortada, featuredImage } =
 ---
 
 <section
-
   class="min-h-screen flex items-center justify-center p-4 md:p-8 relative overflow-hidden"
 >
   {
@@ -25,32 +24,14 @@ const { titulo, subtitulo, textoIntro, cta, imagenDePortada, featuredImage } =
   }
 
   <div
-
-
     class="relative z-10 flex flex-col md:flex-row items-center justify-center gap-x-12 max-w-6xl w-full"
-
   >
     <div
-
-
-
       class="md:w-1/2 text-center md:text-left animate-on-scroll"
-
-
-
       data-delay="200"
-
-
     >
       <h1
-
-
-
-
         class="font-heading text-4xl md:text-6xl font-bold bg-gradient-to-r from-secondary to-accent text-transparent bg-clip-text mb-4"
-
-
-
       >
         {titulo}
       </h1>
@@ -71,74 +52,20 @@ const { titulo, subtitulo, textoIntro, cta, imagenDePortada, featuredImage } =
     </div>
 
     <div
-
-
-
       class="md:w-1/2 flex justify-center items-center mt-12 md:mt-0 animate-on-scroll"
-
-
-
       data-delay="200"
-
-
     >
       <div
-
-
-
-
         class="relative w-80 h-80 md:w-96 md:h-96 rounded-full overflow-hidden shadow-2xl"
-
-
-
       >
         <Image
-
-
-
-
-
           src={imagenDePortada.node.sourceUrl}
-
-
-
-
-
           alt={imagenDePortada.node.altText}
-
-
-
-
-
           width={500}
-
-
-
-
-
           height={500}
-
-
-
-
-
           format="webp"
-
-
-
-
-
           quality={80}
-
-
-
-
-
           class="w-full h-full object-cover"
-
-
-
-
         />
       </div>
     </div>
