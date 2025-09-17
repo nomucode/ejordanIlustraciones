@@ -11,8 +11,17 @@ import Galeria from "../components/sections/Galeria.astro";
 import Cierre from "../components/sections/Cierre.astro";
 
 // Obtenemos todos los datos de la home
-const { hero, manifiesto, queHago, galeria, cierre, imagenDePortada } =
-  await getHomePage();
+const {
+  featuredImage,
+  contenidoDeLaHome: {
+    hero,
+    manifiesto,
+    queHago,
+    galeria,
+    cierre,
+    imagenDePortada,
+  },
+} = await getHomePage();
 ---
 
 <Layout
@@ -24,7 +33,8 @@ const { hero, manifiesto, queHago, galeria, cierre, imagenDePortada } =
     subtitulo={hero.subtitulo}
     textoIntro={hero.texto}
     cta={hero.callToAction}
-    imagen={imagenDePortada}
+    imagenDePortada={imagenDePortada}
+    featuredImage={featuredImage}
   />
 
   <Manifiesto titulo={manifiesto.titulo} texto={manifiesto.texto} />

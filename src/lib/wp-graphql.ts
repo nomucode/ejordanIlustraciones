@@ -60,7 +60,7 @@ export async function getObraBySlug(slug: string) {
           ano,
           dimensiones,
           tecnica,
-          textoNarrativo,
+          textonarrativo,
           
         }
       }
@@ -103,8 +103,15 @@ export async function getHomePage() {
   const data = await fetchAPI(`
    {
   page(id: "triz-jordan", idType: URI) {
+
     title
     slug
+    featuredImage {
+          node {
+            sourceUrl
+            altText
+          }
+        }
     contenidoDeLaHome {
       hero {
         titulo
@@ -169,5 +176,5 @@ export async function getHomePage() {
   }
 }
   `);
-  return data?.page?.contenidoDeLaHome;
+  return data?.page;
 }
