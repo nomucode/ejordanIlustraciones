@@ -20,8 +20,10 @@ const { title } = Astro.props;
 
     <title>Triz Jordan - {title}</title>
 
-    <script type="module" src="/src/js/parallax.js"></script>
-    <script type="module" src="/src/js/animations.js"></script>
+    <script>
+      import "../js/parallax.js";
+      import "../js/animations.js";
+    </script>
   </head>
 
   <body class="bg-gray-50 text-zinc-800 font-sans">
